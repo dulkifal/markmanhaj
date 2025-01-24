@@ -12,12 +12,29 @@ function tableTd(cont) {
 but.onclick = () => {
   let id = inp.value;
 
-  fetch(
-    `https://script.google.com/macros/s/AKfycbwLDMEf3dnqOn-r4wwfL99Z1di6QB3G0GNMs9fa7QAKAT6WNltEXjypmQ-y0S006VKN/exec?id=${id}`
-  )
-    .then((e) => e.json())
-    .then((e) => {
-      console.log(e);
+  // model data from google sheet
+  let data = {
+    Details: {
+      Adno: "123",
+      name: "Dulkifal",
+      class: "10",
+      exam: "Half Yearly",
+    },
+    Marks: [
+      { sub: "Maths", P1: 20, P1T: 50 },
+      { sub: "Science", P1: 30, P1T: 50 },
+      { sub: "English", P1: 40, P1T: 50 },
+      { sub: "Social", P1: 50, P1T: 50 },
+    ],
+  };
+
+  let e = data;
+  // fetch(
+  //   `https://script.google.com/macros/s/AKfycbwLDMEf3dnqOn-r4wwfL99Z1di6QB3G0GNMs9fa7QAKAT6WNltEXjypmQ-y0S006VKN/exec?id=${id}`
+  // )
+  //   .then((e) => e.json())
+  //   .then((e) => {
+      // console.log(e);
       document.getElementById("studentNum").innerHTML =
         "Add.NO : " + e.Details.Adno;
       document.getElementById("studentName").innerHTML =
@@ -45,5 +62,6 @@ but.onclick = () => {
         _tr.append(tableTd(eachSub["P1T"]));
         contTable.append(_tr);
       });
-    });
+
+    // });
 };
